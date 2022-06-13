@@ -1,20 +1,23 @@
 from psycopg2 import pool
 from contextlib import contextmanager
+from flask import current_app
 import os
 
-
-connection_pool = pool.SimpleConnectionPool(
-    0,
-    20,
-    dsn=os.getenv('DATABASE_URI')
-)
+def create_db_pool():
+    connection_pool = pool.SimpleConnectionPool(
+        0,
+        20,
+        dsn=os.getenv('DATABASE_URI')
+    )
+    return connection_pool
 
 
 @contextmanager
 def get_curs():
-    conn = connection_pool.getconn()
+    conn_pool = current_app.config.get('DB_POOL')
+    conn = conn_pool.getconn()
     try:
         with conn:
             yield conn.cursor()
     finally:
-        connection_pool.putconn(conn=conn)
+        conn_pool.putconn(conn=conn)
