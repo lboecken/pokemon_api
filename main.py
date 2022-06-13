@@ -8,7 +8,7 @@ app = create_app()
 
 @app.route('/')
 def hello():
-    return app.secret_key
+    return 'hello world'
 
 cli = FlaskGroup(create_app=create_app)
 
