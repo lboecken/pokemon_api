@@ -1,0 +1,20 @@
+# File needs to be named app.yaml for deployement
+# deploy via 'gcloud app deploy' after configuring
+# the gcloud CLI properly.
+
+# For instructions on the cli config see
+# https://cloud.google.com/appengine/docs/standard/python3/create-app
+
+# For references for the app.yaml see
+# https://cloud.google.com/appengine/docs/standard/python3/config/appref
+
+runtime: python39
+
+env_variables:
+  APP_SETTINGS: 'api.config.ProductionConfig'
+  DB_NAME: 'your_db_name'
+  DB_PASSWORD: 'db_password'
+  DB_USER: 'db_username'
+  DB_HOST: 'db_host'
+  # If using GCP SQL services, see link for formatting DB_HOST
+  # https://cloud.google.com/sql/docs/postgres/connect-app-engine-standard

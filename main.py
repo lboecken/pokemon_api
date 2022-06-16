@@ -5,11 +5,6 @@ from api.db.pool_management import get_curs
 
 app = create_app()
 
-
-@app.route('/')
-def hello():
-    return 'hello world'
-
 cli = FlaskGroup(create_app=create_app)
 
 @cli.command('recreate_db')

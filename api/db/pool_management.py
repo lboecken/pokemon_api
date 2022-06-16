@@ -7,7 +7,11 @@ def create_db_pool():
     connection_pool = pool.SimpleConnectionPool(
         0,
         20,
-        dsn=os.getenv('DATABASE_URI')
+        dbname=os.getenv('DB_NAME'),
+        password=os.getenv('DB_PASSWORD'),
+        user=os.getenv('DB_USER'),
+        host=os.getenv('DB_HOST'),
+        # port=os.getenv('DB_PORT')
     )
     return connection_pool
 
